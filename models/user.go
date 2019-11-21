@@ -1,9 +1,9 @@
 package models
 
 type User struct {
-	Id uint `gorm:"primary_key"`
-	Name string
-	Pass string
+	Id        uint   `gorm:"primary_key"`
+	Name      string `gorm:"type:varchar(100);unique_index"`
+	Pass      string
 	CreatedAt uint
 	UpdatedAt uint
 }
