@@ -3,14 +3,18 @@ package controllers
 import (
 	"gintest/helpers"
 	"gintest/models"
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
-func RegisterForm(c *gin.Context) {
-	c.HTML(200, "register.html", gin.H{})
+type UserController struct{}
+
+func (this *UserController) RegisterForm(c *gin.Context) {
+	c.HTML(200, "user/register.html", gin.H{})
 }
 
-func Register(c *gin.Context) {
+func (this *UserController) Register(c *gin.Context) {
 	username := c.PostForm("email")
 	password := c.PostForm("password")
 	password2 := c.PostForm("password_confirm")
@@ -36,7 +40,18 @@ func Register(c *gin.Context) {
 	helpers.SuccessMsg(c, "注册成功")
 }
 
-func Login(c *gin.Context) {
+func (this *UserController) LoginForm(c *gin.Context) {
+	c.HTML(200, "user/login.html", gin.H{})
+}
+
+func (this *UserController) Logout(c *gin.Context) {
+	s := sessions.Default(c)
+	s.Clear()
+	s.Save()
+	c.Redirect(http.StatusSeeOther, "/login")
+}
+
+func (this *UserController) Login(c *gin.Context) {
 	var (
 		err  error
 		user *models.User

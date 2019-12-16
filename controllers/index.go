@@ -6,16 +6,18 @@ import (
 	"net/http"
 )
 
-func Index(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.html", gin.H{})
+type IndexController struct{}
+
+func (this *IndexController) Index(c *gin.Context) {
+	c.Redirect(http.StatusSeeOther, "/login")
 }
 
-func Welcome(c *gin.Context) {
+func (this *IndexController) Welcome(c *gin.Context) {
 
 	if helpers.SessionGet(c, "user") == nil {
-		c.Redirect(302, "/")
+		c.Redirect(302, "/login")
 	}
-	c.HTML(200, "welcome.html", gin.H{
+	c.HTML(200, "index/welcome.html", gin.H{
 		"username": helpers.SessionGet(c, "user"),
 	})
 }
