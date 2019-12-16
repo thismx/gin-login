@@ -8,7 +8,7 @@ type User struct {
 	UpdatedAt uint
 }
 
-func (User) TableName() string {
+func (_ *User) TableName() string {
 	return "user"
 }
 
