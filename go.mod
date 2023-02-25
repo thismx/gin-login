@@ -11,6 +11,6 @@ require (
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/mattn/go-isatty v0.0.10 // indirect
 	golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c
-	golang.org/x/sys v0.0.0-20191120155948-bd437916bb0e // indirect
+	golang.org/x/sys v0.1.0 // indirect
 	gopkg.in/yaml.v2 v2.2.7 // indirect
 )
